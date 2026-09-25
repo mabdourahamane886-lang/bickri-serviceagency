@@ -1,0 +1,1275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Niger et ses merveilles : découvrez les paysages, la culture, l'histoire et les traditions du Niger.">
+  <title>Le Niger et ses merveilles</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --orange: #e87524;
+      --orange-dark: #b94d0c;
+      --green: #176b45;
+      --green-dark: #0e432c;
+      --cream: #fffaf2;
+      --sand: #f2e5cf;
+      --dark: #17231d;
+      --text: #26332b;
+      --muted: #6e776f;
+      --white: #ffffff;
+      --shadow: 0 15px 45px rgba(26, 41, 32, 0.13);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    body.dark {
+      --cream: #101813;
+      --text: #edf5ef;
+      --muted: #b7c2ba;
+      --white: #19251e;
+      --sand: #1d3023;
+      background: #101813;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: auto;
+    }
+
+    .topbar {
+      background: var(--green-dark);
+      color: white;
+      padding: 8px 0;
+      font-size: 0.88rem;
+    }
+
+    .topbar-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 250, 242, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    body.dark header {
+      background: rgba(16, 24, 19, 0.95);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--orange);
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn,
+    .menu-btn {
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px;
+      font-size: 1.25rem;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      cursor: pointer;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-outline {
+      border: 1px solid white;
+      color: white;
+      background: transparent;
+    }
+
+    .hero {
+      min-height: 650px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(8, 30, 20, 0.88), rgba(8, 30, 20, 0.28)),
+        url("https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1800&q=85")
+        center / cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 820px;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      margin-bottom: 14px;
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow {
+      color: #ffbd7b;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.15;
+    }
+
+    h1 {
+      margin-bottom: 22px;
+      font-size: clamp(2.5rem, 7vw, 5.8rem);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: var(--green);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+    }
+
+    body.dark h2 {
+      color: #a9dfba;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 30px;
+      color: #eff8f1;
+      font-size: 1.15rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading.center {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    .section-heading p,
+    .intro-grid p,
+    .culture-grid p {
+      color: var(--muted);
+    }
+
+    .intro-grid,
+    .culture-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .intro-image,
+    .culture-image {
+      height: 440px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .feature-icon {
+      min-width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--sand);
+      font-size: 1.3rem;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .explore {
+      background: var(--sand);
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .search {
+      min-width: min(100%, 320px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .search input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter {
+      padding: 9px 15px;
+      border: 1px solid rgba(23, 107, 69, 0.3);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--green);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: var(--green);
+      color: white;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+    }
+
+    .card-image {
+      position: relative;
+      height: 220px;
+    }
+
+    .card-image img {
+      height: 100%;
+    }
+
+    .tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--orange);
+      color: white;
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-body p {
+      margin: 8px 0 17px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .card-link {
+      border: 0;
+      background: transparent;
+      color: var(--orange-dark);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .social-box {
+      padding: 60px;
+      border-radius: 30px;
+      background:
+        linear-gradient(120deg, rgba(23, 107, 69, 0.95), rgba(14, 67, 44, 0.95)),
+        url("https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1800&q=85")
+        center / cover no-repeat;
+      color: white;
+      text-align: center;
+    }
+
+    .social-box h2 {
+      color: white;
+    }
+
+    .social-box p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #e5f4e9;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .social-links a {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: white;
+      color: var(--green-dark);
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .social-links a:hover {
+      background: #ffbd7b;
+      transform: translateY(-3px);
+    }
+
+    .contact-card {
+      padding: 30px;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      margin: 20px 0;
+    }
+
+    .contact-item span {
+      font-size: 1.4rem;
+    }
+
+    .contact-item small {
+      display: block;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 50px 0 25px;
+      background: var(--green-dark);
+      color: white;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 35px;
+      margin-bottom: 35px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+      color: #ffbd7b;
+    }
+
+    footer p,
+    footer li {
+      color: #d2e4d8;
+      font-size: 0.94rem;
+    }
+
+    footer ul {
+      display: grid;
+      gap: 9px;
+      list-style: none;
+    }
+
+    footer a:hover {
+      color: #ffbd7b;
+    }
+
+    .newsletter {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .newsletter input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 0;
+      border-radius: 999px;
+      outline: none;
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      color: #c7dbce;
+      font-size: 0.87rem;
+      text-align: center;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 70;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      font-size: 1.7rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-content {
+      position: relative;
+      width: min(650px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--text);
+    }
+
+    .modal-content img {
+      height: 280px;
+    }
+
+    .modal-text {
+      padding: 25px;
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px 5%;
+        background: var(--cream);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .intro-grid,
+      .culture-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      section {
+        padding: 65px 0;
+      }
+
+      .hero {
+        min-height: 570px;
+      }
+
+      .cards,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-box {
+        padding: 38px 20px;
+      }
+
+      .intro-image,
+      .culture-image {
+        height: 330px;
+      }
+
+      .newsletter {
+        flex-direction: column;
+      }
+
+      .topbar-content {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-content">
+      <span>🇳🇪 La beauté du Niger, racontée avec passion</span>
+      <span>Niamey · Agadez · Zinder · Diffa · Tillabéri</span>
+    </div>
+  </div>
+
+  <header>
+    <nav class="container">
+      <a href="#accueil" class="logo" aria-label="Accueil Le Niger et ses merveilles">
+        <span class="logo-mark">🇳🇪</span>
+        <span>Le Niger<br>et ses merveilles</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#accueil">Accueil</a>
+        <a href="#decouvrir">Découvrir</a>
+        <a href="#culture">Culture</a>
+        <a href="#medias">Nos médias</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="darkMode" title="Changer le thème" aria-label="Changer le thème">🌙</button>
+        <a href="#contact" class="btn btn-primary">Nous suivre</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" id="accueil">
+      <div class="container hero-content">
+        <div class="eyebrow">Bienvenue au cœur de l’Afrique</div>
+        <h1>Découvrez le Niger autrement</h1>
+        <p>
+          Des dunes du Sahara aux rives du fleuve Niger, découvrez un pays riche
+          en histoire, en culture, en traditions et en paysages exceptionnels.
+        </p>
+        <div class="hero-buttons">
+          <a href="#decouvrir" class="btn btn-primary">Explorer le Niger</a>
+          <a href="#medias" class="btn btn-outline">Voir nos médias</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container intro-grid">
+        <div>
+          <div class="eyebrow">Une terre de contrastes</div>
+          <h2>Un pays aux mille visages</h2>
+          <p>
+            Le Niger est une destination authentique où se rencontrent le désert,
+            la savane, les fleuves, les anciennes villes caravanières et une
+            extraordinaire diversité culturelle.
+          </p>
+
+          <div class="feature-list">
+            <div class="feature">
+              <div class="feature-icon">🏜️</div>
+              <div>
+                <strong>Des paysages spectaculaires</strong>
+                <p>Le désert du Ténéré, les montagnes de l’Aïr et le fleuve Niger.</p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">🕌</div>
+              <div>
+                <strong>Un patrimoine exceptionnel</strong>
+                <p>Agadez, ancienne cité historique et carrefour des civilisations.</p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">🎵</div>
+              <div>
+                <strong>Une culture vivante</strong>
+                <p>Les peuples, les langues, les fêtes et les savoir-faire du Niger.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <img
+          class="intro-image"
+          src="https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85"
+          alt="Vue du fleuve Niger près de Niamey"
+          loading="lazy"
+        >
+      </div>
+    </section>
+
+    <section class="explore" id="decouvrir">
+      <div class="container">
+        <div class="section-heading center">
+          <div class="eyebrow">À ne pas manquer</div>
+          <h2>Les merveilles du Niger</h2>
+          <p>
+            Explorez les lieux incontournables et découvrez la richesse naturelle,
+            historique et culturelle de notre pays.
+          </p>
+        </div>
+
+        <div class="toolbar">
+          <label class="search">
+            <span aria-hidden="true">🔎</span>
+            <input id="searchInput" type="search" placeholder="Rechercher une merveille..." aria-label="Rechercher une merveille">
+          </label>
+
+          <div class="filters">
+            <button class="filter active" data-filter="all">Tout</button>
+            <button class="filter" data-filter="nature">Nature</button>
+            <button class="filter" data-filter="culture">Culture</button>
+            <button class="filter" data-filter="histoire">Histoire</button>
+          </div>
+        </div>
+
+        <div class="cards">
+
+          <article class="card" data-category="nature" data-title="désert ténéré">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1200&q=85"
+                alt="Dunes de sable dans le désert du Ténéré au Niger"
+                loading="lazy"
+              >
+              <span class="tag">Nature</span>
+            </div>
+            <div class="card-body">
+              <h3>Le désert du Ténéré</h3>
+              <p>Un océan de sable majestueux, symbole de l’immensité du Sahara nigérien.</p>
+              <button class="card-link" data-place="tenere">En savoir plus →</button>
+            </div>
+          </article>
+
+          <article class="card" data-category="culture histoire" data-title="agadez mosquée">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?auto=format&fit=crop&w=1200&q=85"
+                alt="Grande mosquée en banco d’Agadez au Niger"
+                loading="lazy"
+              >
+              <span class="tag">Culture</span>
+            </div>
+            <div class="card-body">
+              <h3>Agadez, la cité historique</h3>
+              <p>Une ville emblématique connue pour sa grande mosquée en banco et son artisanat.</p>
+              <button class="card-link" data-place="agadez">En savoir plus →</button>
+            </div>
+          </article>
+
+          <article class="card" data-category="nature" data-title="parc national w">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=85"
+                alt="Paysage naturel du parc national du W au Niger"
+                loading="lazy"
+              >
+              <span class="tag">Nature</span>
+            </div>
+            <div class="card-body">
+              <h3>Le parc national du W</h3>
+              <p>Un espace naturel remarquable abritant une faune riche et variée.</p>
+              <button class="card-link" data-place="parc">En savoir plus →</button>
+            </div>
+          </article>
+
+          <article class="card" data-category="culture" data-title="peuple touareg">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1200&q=85"
+                alt="Touareg en tenue traditionnelle dans le désert nigérien"
+                loading="lazy"
+              >
+              <span class="tag">Culture</span>
+            </div>
+            <div class="card-body">
+              <h3>Le peuple Touareg</h3>
+              <p>Une culture nomade, élégante et profondément liée au désert.</p>
+              <button class="card-link" data-place="touareg">En savoir plus →</button>
+            </div>
+          </article>
+
+          <article class="card" data-category="histoire" data-title="zinder">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85"
+                alt="Architecture traditionnelle de la ville historique de Zinder"
+                loading="lazy"
+              >
+              <span class="tag">Histoire</span>
+            </div>
+            <div class="card-body">
+              <h3>Zinder et son patrimoine</h3>
+              <p>Une ancienne capitale au patrimoine architectural et culturel remarquable.</p>
+              <button class="card-link" data-place="zinder">En savoir plus →</button>
+            </div>
+          </article>
+
+          <article class="card" data-category="nature" data-title="fleuve niger niamey">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85"
+                alt="Fleuve Niger traversant la ville de Niamey"
+                loading="lazy"
+              >
+              <span class="tag">Nature</span>
+            </div>
+            <div class="card-body">
+              <h3>Le fleuve Niger</h3>
+              <p>Un lieu de vie, de rencontre et de beauté au cœur de Niamey.</p>
+              <button class="card-link" data-place="fleuve">En savoir plus →</button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="culture">
+      <div class="container culture-grid">
+        <img
+          class="culture-image"
+          src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85"
+          alt="Traditions culturelles et artisanat du Niger"
+          loading="lazy"
+        >
+
+        <div>
+          <div class="eyebrow">Traditions et identité</div>
+          <h2>Une culture qui rassemble</h2>
+          <p>
+            Le Niger est composé de nombreuses communautés qui contribuent chacune
+            à la richesse du pays : Haoussa, Zarma-Songhaï, Touareg, Peul, Kanouri,
+            Toubou et bien d’autres.
+          </p>
+          <br>
+          <p>
+            La musique, la danse, la gastronomie, les vêtements traditionnels,
+            l’artisanat et les festivals racontent l’histoire d’un peuple chaleureux
+            et fier de ses racines.
+          </p>
+          <br>
+          <a href="#medias" class="btn btn-secondary">Suivre nos reportages</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="medias">
+      <div class="container">
+        <div class="social-box">
+          <div class="eyebrow">Notre communauté</div>
+          <h2>Le Niger et ses merveilles sur les réseaux</h2>
+          <p>
+            Retrouvez nos photos, vidéos, reportages et découvertes quotidiennes.
+            Abonnez-vous et partagez la beauté du Niger avec le monde entier.
+          </p>
+
+          <div class="social-links">
+            <a href="https://www.tiktok.com/@le.niger.et.ses.m" target="_blank" rel="noopener">TikTok</a>
+            <a href="https://www.facebook.com/LENIGERETSESMERVEILLES" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://youtube.com/@le.niger.et.ses.m" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://whatsapp.com/channel/0029VbAQZPhIiRorHzdZLm3R" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">Restons connectés</div>
+          <h2>Partageons le Niger</h2>
+          <p>
+            Vous avez une photo, une histoire, une destination ou une information
+            à partager ? Contactez-nous et participez à la valorisation du Niger.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-item">
+            <span>📱</span>
+            <div>
+              <strong>Téléphone WhatsApp</strong>
+              <small>+227 88 37 61 33</small>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span>📢</span>
+            <div>
+              <strong>Chaîne WhatsApp</strong>
+              <small>Actualités, images et vidéos du Niger</small>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span>📸</span>
+            <div>
+              <strong>Photos et collaborations</strong>
+              <small>Envoyez vos contenus avec votre nom et votre ville.</small>
+            </div>
+          </div>
+
+          <a
+            class="btn btn-primary"
+            href="https://wa.me/22788376133?text=Bonjour%20Le%20Niger%20et%20ses%20merveilles"
+            target="_blank"
+            rel="noopener"
+          >
+            Nous écrire sur WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Le Niger et ses merveilles</h3>
+        <p>
+          Un espace numérique dédié à la promotion du tourisme, de la culture,
+          de l’histoire et des paysages du Niger.
+        </p>
+
+        <form class="newsletter" id="newsletter">
+          <input type="email" placeholder="Votre adresse e-mail" aria-label="Votre adresse e-mail" required>
+          <button class="btn btn-primary" type="submit">S’inscrire</button>
+        </form>
+      </div>
+
+      <div>
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#decouvrir">Destinations</a></li>
+          <li><a href="#culture">Culture</a></li>
+          <li><a href="#medias">Réseaux sociaux</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Nos réseaux</h3>
+        <ul>
+          <li><a href="https://www.tiktok.com/@le.niger.et.ses.m" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.facebook.com/LENIGERETSESMERVEILLES" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://youtube.com/@le.niger.et.ses.m" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbAQZPhIiRorHzdZLm3R" target="_blank" rel="noopener">Chaîne WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container copyright">
+      <span id="year"></span> — Le Niger et ses merveilles. Tous droits réservés.
+    </div>
+  </footer>
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/22788376133?text=Bonjour%20Le%20Niger%20et%20ses%20merveilles"
+    target="_blank"
+    rel="noopener"
+    aria-label="Contacter Le Niger et ses merveilles sur WhatsApp"
+    title="Écrire sur WhatsApp"
+  >
+    ☎
+  </a>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="Fermer la fenêtre">×</button>
+      <img id="modalImage" src="" alt="">
+      <div class="modal-text">
+        <div class="eyebrow" id="modalCategory"></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const body = document.body;
+    const darkMode = document.getElementById("darkMode");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const searchInput = document.getElementById("searchInput");
+    const filters = document.querySelectorAll(".filter");
+    const cards = document.querySelectorAll(".card");
+
+    if (darkMode) {
+      darkMode.addEventListener("click", () => {
+      body.classList.toggle("dark");
+
+      const isDark = body.classList.contains("dark");
+      darkMode.textContent = isDark ? "☀️" : "🌙";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    }
+
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark");
+      if (darkMode) {
+        darkMode.textContent = "☀️";
+      }
+    }
+
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+        menuBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
+      });
+    }
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (navLinks) {
+          navLinks.classList.remove("open");
+        }
+        if (menuBtn) {
+          menuBtn.textContent = "☰";
+        }
+      });
+    });
+
+    let currentFilter = "all";
+
+    function filterCards() {
+      const search = searchInput.value.toLowerCase().trim();
+
+      cards.forEach((card) => {
+        const category = card.dataset.category;
+        const title = card.dataset.title;
+        const validFilter = currentFilter === "all" || category.includes(currentFilter);
+        const validSearch = title.includes(search);
+
+        card.style.display = validFilter && validSearch ? "block" : "none";
+      });
+    }
+
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        filters.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        currentFilter = button.dataset.filter;
+        filterCards();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener("input", filterCards);
+    }
+
+    const places = {
+      tenere: {
+        title: "Le désert du Ténéré",
+        category: "Nature",
+        image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1200&q=85",
+        alt: "Dunes de sable dans le désert du Ténéré au Niger",
+        description: "Le Ténéré est l’une des régions désertiques les plus impressionnantes du Niger. Ses dunes, ses plateaux et ses horizons infinis attirent les amoureux de nature, de photographie et d’aventure."
+      },
+
+      agadez: {
+        title: "Agadez, la cité historique",
+        category: "Culture et histoire",
+        image: "https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?auto=format&fit=crop&w=1200&q=85",
+        alt: "Grande mosquée en banco d’Agadez au Niger",
+        description: "Agadez est une ville historique du nord du Niger. Sa célèbre mosquée en banco, son artisanat et ses traditions en font un joyau culturel du pays."
+      },
+
+      parc: {
+        title: "Le parc national du W",
+        category: "Nature",
+        image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=85",
+        alt: "Paysage naturel du parc national du W au Niger",
+        description: "Le parc national du W est un espace protégé important d’Afrique de l’Ouest. Il abrite de nombreuses espèces animales et constitue un patrimoine naturel majeur."
+      },
+
+      touareg: {
+        title: "Le peuple Touareg",
+        category: "Culture",
+        image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1200&q=85",
+        alt: "Touareg en tenue traditionnelle dans le désert nigérien",
+        description: "Les Touaregs sont connus pour leur culture nomade, leur artisanat, leur musique et leur connaissance ancestrale du Sahara."
+      },
+
+      zinder: {
+        title: "Zinder et son patrimoine",
+        category: "Histoire",
+        image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85",
+        alt: "Architecture traditionnelle de la ville historique de Zinder",
+        description: "Zinder est une ville historique du Niger dont les quartiers anciens, les palais et l’architecture témoignent d’un riche passé politique et commercial."
+      },
+
+      fleuve: {
+        title: "Le fleuve Niger",
+        category: "Nature",
+        image: "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+        alt: "Fleuve Niger traversant la ville de Niamey",
+        description: "Le fleuve Niger traverse Niamey et constitue un espace essentiel pour la vie, l’agriculture, la pêche, les promenades et les échanges."
+      }
+    };
+
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalCategory = document.getElementById("modalCategory");
+    const modalDescription = document.getElementById("modalDescription");
+    const closeModal = document.getElementById("closeModal");
+
+    document.querySelectorAll(".card-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        const place = places[link.dataset.place];
+        if (!place || !modal || !modalImage || !modalTitle || !modalCategory || !modalDescription) {
+          return;
+        }
+
+        modalImage.src = place.image;
+        modalImage.alt = place.alt;
+        modalTitle.textContent = place.title;
+        modalCategory.textContent = place.category;
+        modalDescription.textContent = place.description;
+
+        modal.classList.add("open");
+      });
+    });
+
+    if (closeModal && modal) {
+      closeModal.addEventListener("click", () => {
+        modal.classList.remove("open");
+      });
+    }
+
+    if (modal) {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.classList.remove("open");
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal) {
+        modal.classList.remove("open");
+      }
+    });
+
+    const newsletter = document.getElementById("newsletter");
+    if (newsletter) {
+      newsletter.addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("Merci ! Votre inscription a bien été enregistrée.");
+        event.target.reset();
+      });
+    }
+
+    const year = document.getElementById("year");
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
+  </script>
+
+</body>
+</html>

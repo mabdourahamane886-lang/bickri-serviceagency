@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ merveille.titre }} | Le Niger et ses merveilles</title>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+  <main class="container story">
+    <div class="story-image">
+      {% if merveille.image_principale %}
+        <img
+          src="{{ merveille.image_principale.url }}"
+          alt="{{ merveille.titre }} au Niger"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+    <article class="story-copy">
+      <p class="eyebrow">{{ merveille.get_categorie_display }} · {{ merveille.region.nom }}</p>
+      <h1>{{ merveille.titre }}</h1>
+      <p>{{ merveille.resume }}</p>
+      <div class="intro-text">{{ merveille.contenu|linebreaks }}</div>
+      {% if merveille.credit_photo %}
+        <p class="credit-photo">
+          {{ merveille.credit_photo }}
+        </p>
+      {% endif %}
+      {% if merveille.video_url %}
+        <p>
+          <a
+            class="btn"
+            href="{{ merveille.video_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Regarder la vidéo
+          </a>
+        </p>
+      {% endif %}
+      <p><a class="btn" href="{% url 'explorer:accueil' %}">Retour à l'accueil</a></p>
+    </article>
+  </main>
+</body>
+</html>

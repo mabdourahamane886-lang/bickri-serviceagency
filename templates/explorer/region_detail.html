@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ region.nom }} | Le Niger et ses merveilles</title>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+  <main class="container story">
+    <div class="story-image">
+      {% if region.image_couverture %}<img src="{{ region.image_couverture.url }}" alt="{{ region.nom }}">{% endif %}
+    </div>
+    <article class="story-copy">
+      <p class="eyebrow">Région du Niger</p>
+      <h1>{{ region.nom }}</h1>
+      <p>{{ region.resume }}</p>
+      {% if region.histoire %}<div class="intro-text">{{ region.histoire|linebreaks }}</div>{% endif %}
+      <h2>Ses merveilles</h2>
+      <div class="places">
+        {% for merveille in merveilles %}
+          <article class="place"><a href="{% url 'explorer:merveille_detail' merveille.slug %}"><div class="place-info"><h3>{{ merveille.titre }}</h3><p>{{ merveille.resume }}</p></div></a></article>
+        {% empty %}<p>Aucune merveille publiée pour cette région.</p>{% endfor %}
+      </div>
+      <p><a class="btn" href="{% url 'explorer:accueil' %}">Retour à l'accueil</a></p>
+    </article>
+  </main>
+</body>
+</html>
