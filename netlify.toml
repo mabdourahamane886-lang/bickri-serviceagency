@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/bcx-proxy?resource=health"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/ai/agent"
+  to = "/.netlify/functions/bcx-proxy?resource=agent"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/ai/images"
+  to = "/.netlify/functions/bcx-proxy?resource=images"
+  status = 200
+  force = true
